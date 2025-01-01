@@ -1,13 +1,17 @@
+import os
 from flask import Flask, request, jsonify
 from utils.data_ingestion import scrape_article
 from utils.processing import analyze_sentiment
 
 app = Flask(__name__)
 
-# Root route
 @app.route('/')
 def home():
-    return "Welcome to the Financial Analysis App!"
+    return "Hello, Render!"
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 # Analyze endpoint
 @app.route('/analyze', methods=['POST'])
